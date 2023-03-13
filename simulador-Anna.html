@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoranTech</title>
+</head>
+<body>
+    <h1>Bem-vindo(a) à MoranTech!</h1>
+    <p>Um dos principais fatores para o desperdício/perda do morango é a falta do controle e monitoramento de temperatura e umidade da fruta. Esse desperdício gira em torno de 30% da quantidade total. <br>
+    O objetivo da MoranTech é reduzir esse desperdício a 5% e aumentar os ganhos de sua empresa.
+    </p>
+      
+    <h2> Simule seu lucro</h2>
+    Quanto morango é transportado (kg): <input id="input_kg"> <br>
+    Quanto morango é perdido (kg): <input id="input_perda"> <br>
+    Quanto recebe por quilograma(kg): <input id="input_valor"> <br>
+    <button onclick="calculo()"> Simular lucro</button>
+    <div id="div_resul"></div>
+</body>
+</html>
+<script>
+    function calculo(){
+        var morango = Number(input_kg.value)
+        var perda = Number(input_perda.value)
+        var valor = Number(input_valor.value)
+
+        var ganho = morango * valor
+        var porcentagem = (perda * 100)/morango
+        var lucroperdido = (morango - perda) * valor
+        var lucro = ganho * 0.95
+        var ganhos = lucro - lucroperdido
+
+    if (morango <= 0) {
+      alert("Por favor digite um número válido!");
+    }
+    if (perda <= 0) {
+      alert("Por favor digite um número válido!");}
+
+    if (morango >0){
+        if (perda >0){
+            div_resul.innerHTML =`
+            <br><br>
+            <b>Transportando ${morango}kg com o valor de R$${valor} o kg, teria os seguintes resultados:</b><br><br>
+
+            <b>Sem a tecnologia MoranTech:</b><br>
+            Ocorreria <b style = "color:red">perda uma de ${porcentagem}%</b> de morangos;<br>
+            Obtendo o lucro de R$${lucroperdido}.
+            
+            <h3>Com a tecnologia MoranTech: </h3>
+            Haveria uma perda de apenas 5% de morangos;<br>
+            Obtendo  <b style="color:green">lucro de R$${lucro}</b><br>
+            Um <b style="color:green">acrescimo nos ganhos de R$${ganhos}!<br>
+            ` 
+        }
+    }
+
+    }
+
+</script>
